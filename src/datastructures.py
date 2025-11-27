@@ -5,6 +5,7 @@ Update this file to implement the following already declared methods:
 - get_member: Should return a member from the self._members list
 """
 
+
 class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
@@ -25,33 +26,27 @@ class FamilyStructure:
         self._next_id += 1
         return generated_id
 
-    def add_member(self, first_name, age, lucky_numbers):
-        self.age = age
-        self.lucky_numbers = lucky_numbers
-        ## You have to implement this method
-        new_member = {
-            'id': self._generate_id(),
-            'first_name': first_name,
-            'last_name': self.last_name,
-            'age': age,
-            'lucky_numbers': lucky_numbers
-        }
-        ## Append the member to the list of _members
-        self._members.append(new_member)
-        return new_member
-     
+    def add_member(self, member):
+        # Add missing fields
+        member['id'] = member.get('id', self._generate_id())
+        member['last_name'] = self.last_name
+
+        self._members.append(member)
+        return member
+
+
     def delete_member(self, id):
-        ## You have to implement this method
+        # You have to implement this method
         for item in self._members:
             if item['id'] == id:
                 self._members.remove(item)
                 return item
-        ## Loop the list and delete the member with the given id
+        # Loop the list and delete the member with the given id
         return None
 
     def get_member(self, id):
-        ## You have to implement this method
-        ## Loop all the members and return the one with the given id
+        # You have to implement this method
+        # Loop all the members and return the one with the given id
         for item in self._members:
             if item['id'] == id:
                 return item
